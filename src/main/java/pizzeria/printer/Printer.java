@@ -29,10 +29,10 @@ public class Printer {
                 new Product(
                         100,
                         "Cotto",
-                        List.of(ingredientService.getIngredientById(1),
-                                ingredientService.getIngredientById(2),
-                                ingredientService.getIngredientById(3)),
-                        sizeService.getSizeById(1),
+                        List.of(ingredientService.getIngredientById(1).orElse(null),
+                                ingredientService.getIngredientById(2).orElse(null),
+                                ingredientService.getIngredientById(3).orElse(null)),
+                        sizeService.getSizeById(1).orElse(null),
                         27.40f
 
                 )

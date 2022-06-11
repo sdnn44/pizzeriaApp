@@ -7,8 +7,10 @@ import pizzeria.model.Ingredient;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -26,8 +28,11 @@ public class IngredientRepository {
                 .toList();
     }
 
-    public Ingredient getIngredientById(int id){
-        return Ingredient.fromEntity(entityManager.find(IngredientEntity.class,id));
+    public Optional<Ingredient> getIngredientById(int id){
+        IngredientEntity ingredientEntity = entityManager.find(IngredientEntity.class, id);
+        if(ingredientEntity == null) return Optional.empty();
+        else return Optional.of(Ingredient.fromEntity(ingredientEntity));
+
     }
 
     public List<Ingredient> getMultipleIngredientsByIds(List<Integer> ids){
@@ -36,7 +41,12 @@ public class IngredientRepository {
     }
 
     @Transactional
-    public void save(Ingredient ingredient){
-        entityManager.persist(IngredientEntity.fromIngredient(ingredient));
+    public boolean save(Ingredient ingredient){
+        try {
+            entityManager.persist(IngredientEntity.fromIngredient(ingredient));
+            return true;
+        }catch (PersistenceException e){
+            return false;
+        }
     }
 }

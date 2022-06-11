@@ -6,6 +6,7 @@ import pizzeria.model.Size;
 import pizzeria.repository.SizeRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -16,5 +17,5 @@ public class SizeService {
     public List<Size> getAllSizes(){
         return sizeRepository.getAllSizes();
     }
-    public Size getSizeById(int id) {return sizeRepository.getSizeById(id);}
+    public Optional<Size> getSizeById(int id) {return sizeRepository.getSizeById(id);}
 }

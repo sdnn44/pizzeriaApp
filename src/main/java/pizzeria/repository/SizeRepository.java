@@ -8,6 +8,7 @@ import pizzeria.model.Size;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -23,7 +24,10 @@ public class SizeRepository {
                 .map(Size::fromEntity)
                 .toList();
     }
-    public Size getSizeById(int id){
-        return Size.fromEntity(entityManager.find(SizeEntity.class,id));
+    public Optional<Size> getSizeById(int id){
+        SizeEntity sizeEntity = entityManager.find(SizeEntity.class, id);
+        if (sizeEntity==null) return Optional.empty();
+        return Optional.of(Size.fromEntity(sizeEntity));
+
     }
 }

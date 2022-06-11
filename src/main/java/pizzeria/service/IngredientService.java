@@ -6,6 +6,7 @@ import pizzeria.model.Ingredient;
 import pizzeria.repository.IngredientRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -17,11 +18,11 @@ public class IngredientService {
         return ingredientRepository.getAllIngredients();
     }
 
-    public void addIngredient(Ingredient ingredient){
-        ingredientRepository.save(ingredient);
+    public boolean addIngredient(Ingredient ingredient){
+        return ingredientRepository.save(ingredient);
     }
 
-    public Ingredient getIngredientById(int id){
+    public Optional<Ingredient> getIngredientById(int id){
         return ingredientRepository.getIngredientById(id);
     }
 }
