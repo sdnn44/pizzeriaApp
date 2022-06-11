@@ -14,6 +14,7 @@ import javax.persistence.*;
 @ToString
 @EqualsAndHashCode
 public class IngredientEntity {
+    @Id
     @Column(name = "ingredient_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

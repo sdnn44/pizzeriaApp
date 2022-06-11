@@ -14,6 +14,7 @@ import javax.persistence.*;
 @ToString
 @EqualsAndHashCode
 public class SizeEntity {
+    @Id
     @Column(name = "size_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

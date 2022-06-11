@@ -16,15 +16,11 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 public class ProductEntity {
+    @PersistenceContext
+    private static EntityManager entityManager;
 
 
-    static private EntityManagerFactory emf;
-
-    @PersistenceUnit
-    public void setEntityManagerFactory(EntityManagerFactory emf) {
-        ProductEntity.emf = emf;
-    }
-
+    @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -40,7 +36,6 @@ public class ProductEntity {
     )
     private List<IngredientEntity> ingredients;
 
-    @Column(name = "size_id")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "size_id")
     private SizeEntity size;
@@ -57,7 +52,6 @@ public class ProductEntity {
 
 
     public static ProductEntity fromProduct(Product product) {
-        EntityManager entityManager = ProductEntity.emf.createEntityManager();
         return new ProductEntity(
                 product.getName(),
                 entityManager.createQuery("SELECT productEntity FROM ProductEntity productEntity WHERE product_id IN :ids",IngredientEntity.class)
