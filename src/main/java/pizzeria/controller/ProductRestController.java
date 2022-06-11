@@ -18,8 +18,8 @@ public class ProductRestController {
     private final ProductService productService;
 
     @GetMapping("/products")
-    public List<Product> getAllProducts(){
-        return productService.getAllProducts();
+    public ResponseEntity<List<Product>> getAllProducts(){
+        return new ResponseEntity<>(productService.getAllProducts(),HttpStatus.OK);
     }
 
     @GetMapping("/products/{productId}")

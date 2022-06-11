@@ -24,4 +24,10 @@ public class ProductService {
     public Optional<Product> getProductById(int id){
         return productRepository.getProductById(id);
     }
+
+    public List<Product> getProductsBySize(int sizeId){
+        return productRepository.getAllProducts().stream()
+                .filter(product -> product.getSize().getId() == sizeId)
+                .toList();
+    }
 }

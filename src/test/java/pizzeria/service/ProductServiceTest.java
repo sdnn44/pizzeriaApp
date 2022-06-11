@@ -108,5 +108,33 @@ class ProductServiceTest {
         Assertions.assertThat(result).isEqualTo(true);
     }
 
+    @Test
+    void should_return_products_of_given_size() {
+        Mockito.when(productRepository.getAllProducts()).thenReturn(mockProducts);
+
+        //when
+        List<Product> result = productService.getProductsBySize(2);
+
+        //then
+        Assertions.assertThat(result.size()).isEqualTo(1);
+        Assertions.assertThat(result.get(0).getId()).isEqualTo(2);
+        Assertions.assertThat(result.get(0).getIngredients().size()).isEqualTo(3);
+        Assertions.assertThat(result.get(0).getSize().getDiameter()).isEqualTo(42);
+        Assertions.assertThat(result.get(0).getPrice()).isEqualTo(32.10f);
+
+    }
+
+    @Test
+    void should_return_empty_list_when_given_wrong_size() {
+        Mockito.when(productRepository.getAllProducts()).thenReturn(mockProducts);
+
+        //when
+        List<Product> result = productService.getProductsBySize(4);
+
+        //then
+        Assertions.assertThat(result.size()).isEqualTo(0);
+
+    }
+
 
 }
