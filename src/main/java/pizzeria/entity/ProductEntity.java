@@ -21,14 +21,14 @@ public class ProductEntity {
 
 
     @Id
-    @Column(name = "id")
+    @Column(name = "product_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = { CascadeType.ALL },fetch = FetchType.EAGER)
     @JoinTable(
             name = "products_ingredients",
             joinColumns = { @JoinColumn(name = "product_id") },
@@ -36,14 +36,14 @@ public class ProductEntity {
     )
     private List<IngredientEntity> ingredients;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "size_id")
     private SizeEntity size;
 
     @Column(name = "price")
-    private Number price;
+    private float price;
 
-    public ProductEntity(String name, List<IngredientEntity> ingredients, SizeEntity size, Number price) {
+    public ProductEntity(String name, List<IngredientEntity> ingredients, SizeEntity size, float price) {
         this.name = name;
         this.ingredients = ingredients;
         this.size = size;

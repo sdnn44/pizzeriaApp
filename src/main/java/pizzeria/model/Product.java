@@ -16,7 +16,7 @@ public class Product {
     private final String name;
     private final List<Ingredient> ingredients;
     private final Size size;
-    private final Number price;
+    private final float price;
 
     public static Product fromEntity(ProductEntity product) {
         return new Product(
