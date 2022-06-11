@@ -102,9 +102,22 @@ input[type=checkbox] {
     }
 }
 
+#myTab {
+    margin-top: 7rem;
+}
+
+.nav-item .nav-link {
+    color: rgb(51, 51, 51) !important;
+}
+
+.nav-item .active {
+    color: #198754 !important;
+    font-weight: bold;
+}
+
 .container {
     max-width: 95vw;
-    margin: 5rem auto;
+    margin: 2rem auto;
 }
 
 .wrapper {
@@ -128,6 +141,7 @@ input[type=checkbox] {
     width: 100%;
     margin: 1.2rem;
     border-radius: 10px;
+    align-items: center;
 }
 
 @media (max-width: 1400px) {
@@ -142,8 +156,10 @@ input[type=checkbox] {
     padding: 1rem;
 }
 
-.content h3,
-.content p {}
+.content h5 {
+    text-align: left;
+    padding: .2rem 0;
+}
 
 .single-card img {
     max-width: 10rem;
