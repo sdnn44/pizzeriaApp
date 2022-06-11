@@ -1,0 +1,98 @@
+* {
+    font-family: 'Source Sans Pro', sans-serif;
+    letter-spacing: 2px;
+}
+
+body {
+    height: 100vh;
+    background-image: url("./pizza-background.png");
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    height: 380px;
+    width: 400px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, .8);
+}
+
+.loginForm {
+    display: block;
+    text-align: center;
+}
+
+.loginForm .form-group {
+    width: 100%;
+    position: relative;
+    color: white;
+}
+
+.loginForm .form-group input {
+    height: 35px;
+    outline: none;
+    font-size: 15px;
+    border-style: none;
+    margin-top: 30px;
+    margin-left: 130px;
+    background-color: #fff;
+    border-radius: 10px;
+    bottom: 50px;
+    width: 230px;
+    text-align: center;
+}
+
+.loginForm .form-group {
+    top: 5px;
+    width: 150px;
+}
+
+.loginForm .form-group label {
+    position: absolute;
+    bottom: 30px;
+    left: 20px;
+    pointer-events: none;
+    font-weight: bold;
+    top: 15px;
+    margin-top: 20px;
+}
+
+.button {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.btnLogin {
+    color: #000;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 170px;
+    height: 35px;
+    font-size: 17px;
+    outline: none;
+}
+
+.btnLogin:hover {
+    transition: all .1s ease;
+    background-color: rgb(34, 87, 3);
+    color: #fff;
+    cursor: pointer;
+}
+
+.newUser {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    color: #fff;
+}
+
+.newUser a {
+    text-decoration: none;
+    margin: 2px;
+    color: #fff;
+    font-weight: bold;
+}
