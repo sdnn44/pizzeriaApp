@@ -40,5 +40,8 @@ public class Printer {
         Product product = productService.getAllProducts().get(2);
         System.out.println(product.getName());
         System.out.println(product.getIngredients());
+        Product product1 = productService.getProductById(5).orElse(null);
+        System.out.println(product1==null?"nie ma":product1);
+
     }
 }

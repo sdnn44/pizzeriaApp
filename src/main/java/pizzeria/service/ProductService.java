@@ -6,6 +6,7 @@ import pizzeria.model.Product;
 import pizzeria.repository.ProductRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -16,7 +17,11 @@ public class ProductService {
         return productRepository.getAllProducts();
     }
 
-    public void addProduct(Product product){
-        productRepository.save(product);
+    public boolean addProduct(Product product){
+        return productRepository.save(product);
+    }
+
+    public Optional<Product> getProductById(int id){
+        return productRepository.getProductById(id);
     }
 }

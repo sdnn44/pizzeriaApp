@@ -11,8 +11,10 @@ import pizzeria.model.Size;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceException;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -34,20 +36,27 @@ public class ProductRepository {
                 .toList();
     }
 
-    public Product getProductById(int productId){
-        return Product.fromEntity(entityManager.find(ProductEntity.class,productId));
+    public Optional<Product> getProductById(int productId){
+        ProductEntity productEntity = entityManager.find(ProductEntity.class, productId);
+        if(productEntity == null) return Optional.empty();
+        return Optional.of(Product.fromEntity(productEntity));
     }
 
     @Transactional
-    public void save(Product product){
+    public boolean save(Product product){
         List<IngredientEntity> ingredients = entityManager.createQuery("SELECT ingredientEntity FROM IngredientEntity ingredientEntity WHERE ingredient_id IN :ids",IngredientEntity.class)
                 .setParameter("ids",product.getIngredients().stream().map(Ingredient::getId).toList()).getResultList();
         SizeEntity size = entityManager.find(SizeEntity.class,product.getSize().getId());
-        entityManager.persist(new ProductEntity(
-                product.getName(),
-                ingredients,
-                size,
-                product.getPrice()
-        ));
+        try {
+            entityManager.persist(new ProductEntity(
+                    product.getName(),
+                    ingredients,
+                    size,
+                    product.getPrice()
+            ));
+            return true;
+        }catch (PersistenceException e){
+            return false;
+        }
     }
 }
