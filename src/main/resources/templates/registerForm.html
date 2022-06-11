@@ -3,34 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="/css/loginForm.css">
+    <link rel="stylesheet" href="/css/registerForm.css">
 </head>
 <body>
 
 <div class="container">
-    <div class="loginForm">
+    <div class="registerForm">
         <form action="" method="post">
 
-            <!-- <div class="alert alert-info">You have been logged out!
-            </div> -->
-
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username" required autofocus="autofocus" maxlength="25">
+            <div class="alert alert-info">Załóż konto w naszej pizzerii!
             </div>
 
             <div class="form-group">
-                <label for="password">Password </label>
-                <input type="password" class="form-control" id="password" name="password" required autofocus="autofocus" minlength="8" maxlength="15">
+                <input type="text" placeholder="Wprowadź login" class="form-control" id="username" name="username" required autofocus="autofocus" maxlength="25">
             </div>
 
+            <div class="form-group">
+                <input type="password" placeholder="Wprowadź hasło" class="form-control" id="password" name="password" required autofocus="autofocus" minlength="8" maxlength="15">
+            </div>
+
+            <div class="form-group">
+                <input type="email" placeholder="Wprowadź email" class="form-control" id="email" name="email" required autofocus="autofocus" maxlength="15">
+            </div>
+            <input type="checkbox" id="agreement" name="agreement" value="agree" required>
+            <label for="">Zapoznałem się z <span>Regulaminem</span> i <span>Polityką Prywatności</span> i akceptuję ich treść.</label>
             <div class="button">
-                <button type="submit" class="btnLogin">Sign in</button>
+                <button type="submit" class="btnLogin">Stwórz konto</button>
+            </div>
+            <div class="newUser">
+                <a href="/">Mam już konto, chcę się zalogować</a>
             </div>
         </form>
-        <div class="newUser">
-            <a href="/">Register here</a>
-        </div>
+
     </div>
 </div>
 
