@@ -16,4 +16,5 @@ public class SizeService {
     public List<Size> getAllSizes(){
         return sizeRepository.getAllSizes();
     }
+    public Size getSizeById(int id) {return sizeRepository.getSizeById(id);}
 }

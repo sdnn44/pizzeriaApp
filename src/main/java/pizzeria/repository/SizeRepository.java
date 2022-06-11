@@ -23,4 +23,7 @@ public class SizeRepository {
                 .map(Size::fromEntity)
                 .toList();
     }
+    public Size getSizeById(int id){
+        return Size.fromEntity(entityManager.find(SizeEntity.class,id));
+    }
 }

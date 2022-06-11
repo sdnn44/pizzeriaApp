@@ -26,6 +26,15 @@ public class IngredientRepository {
                 .toList();
     }
 
+    public Ingredient getIngredientById(int id){
+        return Ingredient.fromEntity(entityManager.find(IngredientEntity.class,id));
+    }
+
+    public List<Ingredient> getMultipleIngredientsByIds(List<Integer> ids){
+        return entityManager.createQuery("SELECT ingredientEntity FROM ProductEntity productEntity WHERE product_id IN :ids",IngredientEntity.class)
+                .setParameter("ids",ids).getResultList().stream().map(Ingredient::fromEntity).toList();
+    }
+
     @Transactional
     public void save(Ingredient ingredient){
         entityManager.persist(IngredientEntity.fromIngredient(ingredient));
