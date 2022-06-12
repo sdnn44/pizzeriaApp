@@ -20,7 +20,7 @@ public class MainController {
     public String getMainPage(Model model){
         List<Size> allSizes = sizeService.getAllSizes();
         model.addAttribute("sizes",allSizes);
-        allSizes.forEach(size -> model.addAttribute(size.getName(),productService.getProductsBySize(size.getId()))
+        allSizes.forEach(size -> model.addAttribute("test"+size.getId(),productService.getProductsBySize(size.getId()))
         );
 
         return "productPanel.html";
