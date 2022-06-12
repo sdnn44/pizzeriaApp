@@ -38,7 +38,19 @@ public class Printer {
 
                 )
         );
-        Product product = productService.getAllProducts().get(2);
+        productService.addProduct(
+                new Product(
+                        100,
+                        "Cotto",
+                        List.of(ingredientService.getIngredientById(1).orElse(null),
+                                ingredientService.getIngredientById(2).orElse(null),
+                                ingredientService.getIngredientById(3).orElse(null)),
+                        sizeService.getSizeById(3).orElse(null),
+                        27.40f
+
+                )
+        );
+        Product product = productService.getProductsBySize(1).get(0);
         System.out.println(product.getName());
         System.out.println(product.getIngredients());
         Product product1 = productService.getProductById(5).orElse(null);

@@ -1,5 +1,6 @@
 INSERT INTO sizes(name,diameter) VALUES ('Mała',32);
 INSERT INTO sizes(name,diameter) VALUES ('Duża',42);
+INSERT INTO sizes(name,diameter) VALUES ('Średnia',52);
 
 INSERT INTO ingredients(name,is_vegetarian,allergens)
     VALUES ('Sos pomidorowy',true,null);

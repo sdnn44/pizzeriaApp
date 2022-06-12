@@ -4,9 +4,22 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="/css/registerForm.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
 </head>
+
 <body>
 
+<nav class="navbar fixed-top">
+    <div class="logo"><a href="#">Pizzeria</a></div>
+    <ul class="nav-links">
+        <input type="checkbox" id="checkbox_toggle" />
+        <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+        <div class="menu">
+            <a href="#"><i class="fa-solid fa-house"></i>Strona główna</a>
+        </div>
+    </ul>
+</nav>
 <div class="container">
     <div class="registerForm">
         <form action="" method="post">
@@ -25,8 +38,8 @@
             <div class="form-group">
                 <input type="email" placeholder="Wprowadź email" class="form-control" id="email" name="email" required autofocus="autofocus" maxlength="15">
             </div>
-            <input type="checkbox" id="agreement" name="agreement" value="agree" required>
-            <label for="">Zapoznałem się z <span>Regulaminem</span> i <span>Polityką Prywatności</span> i akceptuję ich treść.</label>
+            <!-- <input type="checkbox" id="agreement" name="agreement" value="agree" required>
+            <label for="politics">Zapoznałem się z <span>Regulaminem</span> i <span>Polityką Prywatności</span> i akceptuję ich treść.</label> -->
             <div class="button">
                 <button type="submit" class="btnLogin">Stwórz konto</button>
             </div>
