@@ -29,7 +29,7 @@ public class ProductRestController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping("/products")
     public ResponseEntity<Void> addProduct(@RequestBody Product product){
         return productService.addProduct(product)
                 ? ResponseEntity.status(HttpStatus.CREATED).build()
