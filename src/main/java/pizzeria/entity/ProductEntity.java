@@ -50,14 +50,4 @@ public class ProductEntity {
         this.price = price;
     }
 
-
-    public static ProductEntity fromProduct(Product product) {
-        return new ProductEntity(
-                product.getName(),
-                entityManager.createQuery("SELECT ingredientEntity FROM IngredientEntity ingredientEntity WHERE ingredient_id IN :ids",IngredientEntity.class)
-                    .setParameter("ids",product.getIngredients().stream().map(Ingredient::getId).toList()).getResultList(),
-                entityManager.find(SizeEntity.class,product.getSize().getId()),
-                product.getPrice()
-        );
-    }
 }
