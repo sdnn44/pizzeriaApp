@@ -30,12 +30,6 @@ public class Order {
         );
     }
 
-    /*public Order(List<Product> products) {
-        this.address = null;
-        this.orderItems = products;
-        this.orderDate = null;
-        this.total = products.stream().map(Product::getPrice).reduce(0f, Float::sum);
-    }*/
 
     public Order(List<OrderItem> orderItems){
         this.address = null;
