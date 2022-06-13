@@ -50,7 +50,6 @@ public class OrderRepository {
             );
             return true;
         }catch (PersistenceException e){
-            System.out.println(e.getMessage());
             return false;
         }
     }

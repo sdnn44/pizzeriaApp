@@ -35,6 +35,16 @@ public class MainController {
 
         return "productPanel.html";
     }
+    @GetMapping("/orderPlaced")
+    public String getMainPageWithPopup(Model model){
+        List<Size> allSizes = sizeService.getAllSizes();
+        model.addAttribute("sizes",allSizes);
+        allSizes.forEach(size -> model.addAttribute("test"+size.getId(),productService.getProductsBySize(size.getId()))
+        );
+        model.addAttribute("success",true);
+
+        return "productPanel.html";
+    }
 
 
 
@@ -53,7 +63,7 @@ public class MainController {
         model.addAttribute("address",new Address());
         model.addAttribute("order",new Order(orderItems));
         System.out.println(model.getAttribute("order"));
-        return "shoppingCart.html";
+        return "shopping_cart.html";
     }
 
     @PostMapping("/orders")
@@ -63,7 +73,7 @@ public class MainController {
         order.setAddress(address.toString());
         System.out.println(order);
         boolean result = orderService.save(order);
-        return result?"orderPlaced.html":"orderPlacingError.html";
+        return result?"redirect:/orderPlaced":"orderPlacingError.html";
     }
 
 

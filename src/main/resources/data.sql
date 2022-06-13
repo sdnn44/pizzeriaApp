@@ -8,9 +8,9 @@ INSERT INTO ingredients(name,is_vegetarian,allergens)
     VALUES ('Mozzarella di bufala',true,'laktoza');
 
 INSERT INTO products(name,size_id,price)
-    VALUES ('Margherita',1,20);
+    VALUES ('Margherita',1,20.00);
 INSERT INTO products(name,size_id,price)
-    VALUES ('Margherita',2,25);
+    VALUES ('Margherita',2,25.00);
 
 INSERT INTO products_ingredients(product_id, ingredient_id)
     VALUES (1,1);
