@@ -12,7 +12,7 @@
     <title>Pizzeria</title>
 </head>
 
-<body>
+<body th:with="order='dsaf'">
 <nav class="navbar fixed-top">
     <div class="logo"><a href="#">Pizzeria</a></div>
     <ul class="nav-links">
@@ -20,7 +20,7 @@
         <label for="checkbox_toggle" class="hamburger">&#9776;</label>
         <div class="menu">
             <a href="loginForm.html"><i class="fa-solid fa-user"></i>Zaloguj się</a>
-            <a href="#"><i class="fa-solid fa-cart-shopping"></i>Moje zamówienie</a>
+            <a onclick="openCart()" ><i class="fa-solid fa-cart-shopping"></i>Moje zamówienie</a>
         </div>
     </ul>
 </nav>
@@ -47,7 +47,7 @@
                             <span>Alergeny:</span> <span th:each="ingredient:${element.ingredients}" th:if="${ingredient.allergens} != null" th:text="${ingredient.allergens}"></span>
                         </p>
 <!--                        <p th:if="${element.ingredient.allergens} != null" th:text="${element.ingredient.allergens}"></p>-->
-                        <button type="button" class="btn btn-success single-product-button float-end"><i class="fa-solid fa-cart-shopping"></i>Dodaj do koszyka</button>
+                        <button type="button" class="btn btn-success single-product-button float-end" th:onclick="'addId(\'' + ${element.id} + '\');'"><i class="fa-solid fa-cart-shopping"></i>Dodaj do koszyka</button>
                         <h5 th:text="${element.price}+' PLN'"></h5>
                     </div>
                 </div>
@@ -55,6 +55,17 @@
         </div>
     </div>
 </div>
+<script>
+    let productIds = "";
+    const addId = id =>{
+        productIds += id;
+        productIds +=",";
+    }
+    const openCart = () =>{
+        if(productIds.length>0) productIds = productIds.slice(0,-1);
+        window.location.href= "/shopping-cart?productIds="+productIds;
+    }
+</script>
 <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
 <!--<script th:src="@{/assets/jquery.js}"></script>-->
 <!--<script th:src="@{/assets/bootstrap.bundle.min.js}"></script>-->
