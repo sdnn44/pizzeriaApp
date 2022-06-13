@@ -23,37 +23,6 @@ body {
     box-shadow: 0 0 5px 2px #535250;
     border-bottom: 1px solid #131212;
 }
-.shoppingCard {
-    margin-top: 1rem;
-}
-
-.shoppingCard a {
-    cursor: pointer;
-}
-.fixed-center {
-    z-index: 10;
-    position: fixed;
-    top: 40%;
-    left: 40vw;
-    background-color: #198754;
-    color: white;
-    font-weight: bold;
-    border: 1px solid #198754;
-    border-radius: 10px;
-}
-
-.fixed-center i {
-    float: right;
-    color: white;
-    font-size: 1.5rem;
-    margin-top: .5rem;
-    margin-right: .5rem;
-}
-
-.fixed-center p {
-    float: none;
-    padding: 2rem;
-}
 
 .logo {
     font-size: 3rem;
@@ -133,22 +102,9 @@ input[type=checkbox] {
     }
 }
 
-#myTab {
-    margin-top: 7rem;
-}
-
-.nav-item .nav-link {
-    color: rgb(51, 51, 51) !important;
-}
-
-.nav-item .active {
-    color: #198754 !important;
-    font-weight: bold;
-}
-
 .container {
     max-width: 95vw;
-    margin: 2rem auto;
+    margin: 5rem auto;
 }
 
 .wrapper {
@@ -163,16 +119,71 @@ input[type=checkbox] {
     text-transform: uppercase;
 }
 
-.single-card {
+.section-title {
+    width: 100%;
+    text-align: center;
+    margin-top: 6rem;
+    margin-bottom: 1rem;
+    color: rgb(51, 51, 51);
+}
+
+.row-form {
+    box-shadow: rgb(100, 100, 111, 0.2) 0 7px 29px 0;
+    border-radius: 15px;
+    max-height: 60vh;
+}
+
+.row-form form .inputBox {
     display: flex;
-    max-width: 47%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.row-form form {
+    /* flex: 1 1; */
+    padding: 3rem;
+    /* margin-left: 5rem; */
+}
+
+.row-form #username_input,
+.row-form #email_input,
+.row-form #submit_input,
+.row-form form textarea {
+    padding: 0.8rem;
+    margin: 1rem 0;
+    text-transform: none;
+    border: solid .1rem #515151;
+    border-radius: .5rem;
+    width: 100%;
+    background-color: rgba(54, 50, 50, 0.4);
+    color: white;
+}
+
+#submit_input:hover {
+    color: black;
+    background-color: #d4af37;
+    border: 1px solid white;
+    box-shadow: 0 0 1rem rgb(240, 212, 55);
+    transition: .3s ease;
+}
+
+.card-container {
+    width: 60%;
+    max-height: 60vh;
+    overflow: auto;
+}
+
+.single-card {
+    align-items: center;
+    display: flex;
+    max-width: 90%;
     overflow: hidden;
     transition: all .6s ease;
     box-shadow: rgb(100, 100, 111, 0.2) 0 7px 29px 0;
     width: 100%;
-    margin: 1.2rem;
+    margin: 0 2rem 2rem 0;
     border-radius: 10px;
-    align-items: center;
 }
 
 @media (max-width: 1400px) {
@@ -187,15 +198,13 @@ input[type=checkbox] {
     padding: 1rem;
 }
 
-.content h5 {
-    text-align: left;
-    padding: .2rem 0;
-}
+.content h3,
+.content p {}
 
 .single-card img {
     max-width: 10rem;
     max-height: 12rem;
-    margin-top: 1rem;
+    margin-top: .5rem;
 }
 
 .single-product-button {

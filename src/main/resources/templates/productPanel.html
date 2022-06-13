@@ -19,11 +19,18 @@
         <input type="checkbox" id="checkbox_toggle" />
         <label for="checkbox_toggle" class="hamburger">&#9776;</label>
         <div class="menu">
-            <a href="loginForm.html"><i class="fa-solid fa-user"></i>Zaloguj się</a>
-            <a onclick="openCart()" ><i class="fa-solid fa-cart-shopping"></i>Moje zamówienie</a>
+            <div class="shoppingCard"><a href="loginForm.html"><i class="fa-solid fa-user"></i>Zaloguj się</a></div>
+            <div class="shoppingCard"><a onclick="openCart()" ><i class="fa-solid fa-cart-shopping"></i>Moje zamówienie </a></div>
         </div>
     </ul>
 </nav>
+
+<div th:if="${success}" class="fixed-center" >
+    <div class="container-fixed">
+        <a href="#" onclick="hideAlert()"><i class="fa-regular fa-circle-xmark"></i></a>
+        <p>Zamówienie zostało złożone!</p>
+    </div>
+</div>
 
 <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist" th:with="btnId = 1">
     <li th:each="size,iterStat:${sizes}" class="nav-item" role="presentation">
@@ -48,7 +55,7 @@
                         </p>
 <!--                        <p th:if="${element.ingredient.allergens} != null" th:text="${element.ingredient.allergens}"></p>-->
                         <button type="button" class="btn btn-success single-product-button float-end" th:onclick="'addId(\'' + ${element.id} + '\');'"><i class="fa-solid fa-cart-shopping"></i>Dodaj do koszyka</button>
-                        <h5 th:text="${element.price}+' PLN'"></h5>
+                        <h5 th:text="${#numbers.formatDecimal(element.price, 0, 'COMMA', 2, 'POINT')}+' zł'"></h5>
                     </div>
                 </div>
             </div>
@@ -57,22 +64,47 @@
 </div>
 <script>
     let productIds = "";
+    // window.addEventListener("load", function() {
+    //     if(typeof(Storage) === "undefined"){
+    //         document.querySelector(".shoppingCard a > span").innerHTML = 0;
+    //     }
+    //     else {
+    //         productIds = sessionStorage.productIds;
+    //     }
+    // });
+
+    // document.querySelector(".shoppingCard a > span").innerHTML = sessionStorage.clickcount;
+
     const addId = id =>{
+
         productIds += id;
         productIds +=",";
+
+        swal("Pomyślnie dodano do koszyka");
+
+        // if(typeof(Storage) !== "undefined") {
+        //     sessionStorage.productIds = productIds;
+        //     if (sessionStorage.clickcount) {
+        //         sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
+        //     } else {
+        //         sessionStorage.clickcount = 1;
+        //     }
+        // }
+        // document.querySelector(".shoppingCard a > span").innerHTML = sessionStorage.clickcount;
     }
     const openCart = () =>{
         if(productIds.length>0) productIds = productIds.slice(0,-1);
         window.location.href= "/shopping-cart?productIds="+productIds;
     }
+        function hideAlert() {
+        document.querySelector(".fixed-center").style.display = "none";}
 </script>
 <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
 <!--<script th:src="@{/assets/jquery.js}"></script>-->
 <!--<script th:src="@{/assets/bootstrap.bundle.min.js}"></script>-->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 
 </html>
