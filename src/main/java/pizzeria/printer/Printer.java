@@ -3,12 +3,11 @@ package pizzeria.printer;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import pizzeria.model.Address;
 import pizzeria.model.Ingredient;
 import pizzeria.model.Product;
 import pizzeria.repository.ProductRepository;
-import pizzeria.service.IngredientService;
-import pizzeria.service.ProductService;
-import pizzeria.service.SizeService;
+import pizzeria.service.*;
 
 import java.util.List;
 
@@ -20,7 +19,13 @@ public class Printer {
     private final ProductService productService;
     private final IngredientService ingredientService;
 
+    private final OrderService orderService;
+    private final UserService userService;
+    private final AddressService addressService;
+
     public void process() {
+
+
 
         System.out.println("Jaki krakers wariacie?");
         System.out.println(sizeService.getAllSizes());
@@ -55,6 +60,8 @@ public class Printer {
         System.out.println(product.getIngredients());
         Product product1 = productService.getProductById(5).orElse(null);
         System.out.println(product1==null?"nie ma":product1);
+
+
 
     }
 }

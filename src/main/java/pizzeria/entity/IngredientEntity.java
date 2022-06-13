@@ -28,6 +28,7 @@ public class IngredientEntity {
     @Column(name = "allergens")
     private String allergens;
 
+
     public IngredientEntity(String name, boolean isVegetarian, String allergens) {
         this.name = name;
         this.isVegetarian = isVegetarian;

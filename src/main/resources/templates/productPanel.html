@@ -36,7 +36,7 @@
     <div th:each="size,iterStat:${sizes}" class="tab-pane" th:classappend="${iterStat.count == 1 ? 'show active' : ''}" th:id="'a'+${iterStat.count}" role="tabpanel" th:aria-labelledby="${iterStat.count}" tabindex="0">
         <div class="container">
             <div class="wrapper">
-                <div th:each="element:${__${'test'+size.id}__}" class="single-card">
+                <div th:each="element:${__${'id_'+size.id}__}" class="single-card">
                     <img src="/img/pizza1.png" alt="">
                     <div class="content">
                         <h4 th:text="${element.name}"></h4>
@@ -47,7 +47,7 @@
                             <span>Alergeny:</span> <span th:each="ingredient:${element.ingredients}" th:if="${ingredient.allergens} != null" th:text="${ingredient.allergens}"></span>
                         </p>
 <!--                        <p th:if="${element.ingredient.allergens} != null" th:text="${element.ingredient.allergens}"></p>-->
-                        <button type="button" class="btn btn-success single-product-button float-end"><i class="fa-solid fa-cart-shopping"></i>Dodaj do koszyka</button>
+                        <th:form> <button type="button" class="btn btn-success single-product-button float-end"><i class="fa-solid fa-cart-shopping"></i>Dodaj do koszyka</button></th:form>
                         <h5 th:text="${element.price}+' PLN'"></h5>
                     </div>
                 </div>
