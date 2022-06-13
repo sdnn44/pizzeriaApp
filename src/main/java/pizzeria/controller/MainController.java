@@ -35,6 +35,11 @@ public class MainController {
 
         return "productPanel.html";
     }
+    @GetMapping("/login")
+    public String getLoginForm(){
+        return "loginForm.html";
+    }
+
     @GetMapping("/orderPlaced")
     public String getMainPageWithPopup(Model model){
         List<Size> allSizes = sizeService.getAllSizes();

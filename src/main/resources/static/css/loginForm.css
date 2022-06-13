@@ -5,7 +5,7 @@
 
 body {
     height: 100vh;
-    background-image: url("./pizza-background.png");
+    background-image: url("./img/pizza-background.png");
     background-position: center;
     background-size: cover;
     display: flex;

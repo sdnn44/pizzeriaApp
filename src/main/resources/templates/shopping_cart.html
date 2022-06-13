@@ -14,7 +14,7 @@
 
 <body>
     <nav class="navbar fixed-top ">
-        <div class="logo"><a href="#">Pizzeria</a></div>
+        <div class="logo"><a href="/">Pizzeria</a></div>
         <ul class="nav-links">
             <input type="checkbox" id="checkbox_toggle" />
             <label for="checkbox_toggle" class="hamburger">&#9776;</label>
@@ -52,7 +52,7 @@
                         <input type="number" name="username" id="username_input" placeholder="Numer domu" maxlength="3" required />
                         <input type="number" name="username" id="email_input" placeholder="Numer mieszkania" maxlength="3"  required />
                     </div>
-                    <input type="submit" value="Zamów" class="show-menu" id="submit_input" />
+                    <input type="submit" th:if="${order.orderItems.size() > 0}" value="Zamów" class="show-menu" id="submit_input" />
                 </form>
             </div>
             <h4 th:text="'Całkowity kosz zamówienia: ' +${#numbers.formatDecimal(order.total, 1, 'COMMA', 2, 'POINT')}+' zł'"></h4>
