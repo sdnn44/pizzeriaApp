@@ -17,6 +17,10 @@ public class ProductService {
         return productRepository.getAllProducts();
     }
 
+    public List<Product> getProductsByIds(List<Integer> ids){
+        return productRepository.getProductsByIds(ids);
+    }
+
     public boolean addProduct(Product product){
         return productRepository.save(product);
     }

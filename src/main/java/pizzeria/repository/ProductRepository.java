@@ -36,6 +36,11 @@ public class ProductRepository {
                 .toList();
     }
 
+    public List<Product> getProductsByIds(List<Integer> ids){
+        return entityManager.createQuery("SELECT productEntity FROM ProductEntity productEntity WHERE product_id IN :ids",ProductEntity.class)
+                .setParameter("ids",ids).getResultStream().map(Product::fromEntity).toList();
+    }
+
     public Optional<Product> getProductById(int productId){
         ProductEntity productEntity = entityManager.find(ProductEntity.class, productId);
         if(productEntity == null) return Optional.empty();
