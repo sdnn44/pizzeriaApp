@@ -43,7 +43,15 @@ CREATE TABLE IF NOT EXISTS orders
 );
 
 
-
+CREATE TABLE IF NOT EXISTS order_items
+(
+    order_item_id            serial PRIMARY KEY,
+    quantity              int ,
+    product_id           int,
+    order_id             int,
+    CONSTRAINT fk_product FOREIGN KEY (product_id) REFERENCES products (product_id),
+    CONSTRAINT fk_order FOREIGN KEY (order_id) REFERENCES orders (order_id)
+);
 
 
 CREATE TABLE IF NOT EXISTS orders_products

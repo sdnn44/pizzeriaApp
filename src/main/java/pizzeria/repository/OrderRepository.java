@@ -6,12 +6,14 @@ import org.springframework.stereotype.Repository;
 import pizzeria.entity.*;
 import pizzeria.model.Ingredient;
 import pizzeria.model.Order;
+import pizzeria.model.OrderItem;
 import pizzeria.model.Product;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -33,16 +35,22 @@ public class OrderRepository {
 
     @Transactional
     public boolean save(Order order){
-        List<ProductEntity> products = order.getProducts().stream().map(Product::getId).map(id -> entityManager.find(ProductEntity.class,id)).toList();
+        OrderEntity orderEntity = new OrderEntity(
+                order.getAddress(),
+                order.getOrderDate(),
+                order.getTotal(),
+                new ArrayList<>()
+        );
+        order.getOrderItems().forEach(orderItem -> {
+            orderEntity.getOrderItems().add(new OrderItemEntity(orderItem.getQuantity(),entityManager.find(ProductEntity.class,orderItem.getProduct().getId())));
+        });
         try {
-            entityManager.persist(new OrderEntity(
-                    order.getAddress(),
-                    order.getOrderDate(),
-                    order.getTotal(),
-                    products
-            ));
+            entityManager.persist(
+                    orderEntity
+            );
             return true;
         }catch (PersistenceException e){
+            System.out.println(e.getMessage());
             return false;
         }
     }
