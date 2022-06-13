@@ -7,10 +7,7 @@ import lombok.Setter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pizzeria.model.Address;
-import pizzeria.model.Order;
-import pizzeria.model.Product;
-import pizzeria.model.Size;
+import pizzeria.model.*;
 import pizzeria.service.OrderService;
 import pizzeria.service.ProductService;
 import pizzeria.service.SizeService;
@@ -53,11 +50,18 @@ public class MainController {
 
     @GetMapping("/shopping-cart")
     public String getShoppingCartPage(@RequestParam List<Integer> productIds,Model model){
-        List<Product> optionals = productIds.stream().map(productService::getProductById).flatMap(Optional::stream).toList();
-        model.addAttribute("order",new Order(
-                productService.getProductsByIds(productIds)
-        ));
+        List<OrderItem> orderItems = new ArrayList<>();
+        productIds.forEach(id ->{
+            OrderItem item = orderItems.stream().filter(orderItem -> orderItem.getId() == id).findFirst().orElse(null);
+            if(item != null) item.setQuantity(item.getQuantity()+1);
+            else {
+                Product product = productService.getProductById(id).orElse(null);
+                if(product!=null) orderItems.add(new OrderItem(id,1,product));
+
+            }
+        });
         model.addAttribute("address",new Address());
+        model.addAttribute("order",new Order(orderItems));
         System.out.println(model.getAttribute("order"));
         return "shopping_cart.html";
     }

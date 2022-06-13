@@ -30,18 +30,15 @@ public class OrderEntity {
     @Column(name = "total")
     private float total;
 
-    @ManyToMany(cascade = { CascadeType.ALL },fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "orders_products",
-            joinColumns = { @JoinColumn(name = "order_id") },
-            inverseJoinColumns = { @JoinColumn(name = "product_id") }
-    )
-    private List<ProductEntity> products;
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    @JoinColumn(name = "order_id")
+    private List<OrderItemEntity> orderItems;
 
-    public OrderEntity(String address, LocalDateTime orderDate, float total, List<ProductEntity> products) {
+
+    public OrderEntity(String address, LocalDateTime orderDate, float total, List<OrderItemEntity> orderItems) {
         this.address = address;
         this.orderDate = orderDate;
         this.total = total;
-        this.products = products;
+        this.orderItems = orderItems;
     }
 }

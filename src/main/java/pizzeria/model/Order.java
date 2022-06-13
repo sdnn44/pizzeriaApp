@@ -6,6 +6,8 @@ import pizzeria.entity.OrderEntity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -17,21 +19,24 @@ public class Order {
     private  String address;
     private  LocalDateTime orderDate;
     private  float total;
-    private  List<Product> products;
+    private  List<OrderItem> orderItems;
 
     public static Order fromEntity(OrderEntity orderEntity){
         return new Order(
                 orderEntity.getAddress(),
                 orderEntity.getOrderDate(),
                 orderEntity.getTotal(),
-                orderEntity.getProducts().stream().map(Product::fromEntity).toList()
+                orderEntity.getOrderItems().stream().map(OrderItem::fromEntity).toList()
         );
     }
 
-    public Order(List<Product> products) {
+
+    public Order(List<OrderItem> orderItems){
         this.address = null;
-        this.products = products;
+        this.orderItems = orderItems;
         this.orderDate = null;
-        this.total = products.stream().map(Product::getPrice).reduce(0f, Float::sum);
+        this.total = orderItems.stream()
+                .map(orderItem -> (orderItem.getProduct().getPrice()*orderItem.getQuantity()))
+                .reduce(0f,Float::sum);
     }
 }

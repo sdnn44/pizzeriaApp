@@ -16,19 +16,12 @@ public class ProductService {
     public List<Product> getAllProducts(){
         return productRepository.getAllProducts();
     }
-
-    public List<Product> getProductsByIds(List<Integer> ids){
-        return productRepository.getProductsByIds(ids);
-    }
-
     public boolean addProduct(Product product){
         return productRepository.save(product);
     }
-
     public Optional<Product> getProductById(int id){
         return productRepository.getProductById(id);
     }
-
     public List<Product> getProductsBySize(int sizeId){
         return productRepository.getAllProducts().stream()
                 .filter(product -> product.getSize().getId() == sizeId)
